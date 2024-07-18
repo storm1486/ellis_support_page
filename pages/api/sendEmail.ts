@@ -8,11 +8,7 @@ export default async function handler(
   if (req.method === "POST") {
     const { senderEmail, input1, input2, input3 } = req.body;
 
-    console.log(senderEmail)
-
-    console.log("USER", process.env.EMAIL_USER);
-    console.log("PASS", process.env.EMAIL_PASS);
-    console.log("RECEIVER", process.env.EMAIL_RECEIVER);
+    console.log("API Route Hit");
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -23,7 +19,8 @@ export default async function handler(
     });
 
     const mailOptions = {
-      from: senderEmail,
+      from: `"${senderEmail}" <${process.env.EMAIL_USER}>`, // Show sender's email in the display name
+      replyTo: senderEmail, // Ensure replies go to the sender's email
       to: process.env.EMAIL_RECEIVER,
       subject: "Form Submission",
       text: `Input1: ${input1}, Input2: ${input2}, Input3: ${input3}`,

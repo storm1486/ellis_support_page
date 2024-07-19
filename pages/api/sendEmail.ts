@@ -6,7 +6,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
-    const { senderEmail, input1, input2, input3 } = req.body;
+    const { senderEmail, name, content } = req.body;
 
     console.log("API Route Hit");
 
@@ -22,8 +22,8 @@ export default async function handler(
       from: `"${senderEmail}" <${process.env.EMAIL_USER}>`, // Show sender's email in the display name
       replyTo: senderEmail, // Ensure replies go to the sender's email
       to: process.env.EMAIL_RECEIVER,
-      subject: "Form Submission",
-      text: `Input1: ${input1}, Input2: ${input2}, Input3: ${input3}`,
+      subject: "Ellis Test Help Submission",
+      text: `Name: ${name}\nRequest:\n${content}`,
     };
 
     try {

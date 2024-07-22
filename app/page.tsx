@@ -1,12 +1,13 @@
 "use client";
-
 import { useState, ChangeEvent, FormEvent } from "react";
+import { db } from "./firebase"; // Adjust the path according to your project structure
+import { collection, addDoc } from "firebase/firestore";
 
 export default function Home() {
   const [formData, setFormData] = useState({
     senderEmail: "",
     name: "",
-    content: "",
+    message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -23,18 +24,17 @@ export default function Home() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    const response = await fetch("/api/sendEmail", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    try {
+      // Add a new document to the 'emails' collection
+      await addDoc(collection(db, "form"), {
+        name: formData.name,
+        email: formData.senderEmail,
+        message: formData.message,
+      });
 
-    if (response.ok) {
       setIsSubmitted(true);
-    } else {
-      alert("Failed to send email. Please try again.");
+    } catch (error) {
+      console.error("Error adding document: ", error);
     }
   };
 
@@ -89,15 +89,15 @@ export default function Home() {
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="content"
+              htmlFor="message"
             >
-              How can we help?
+              Message
             </label>
             <textarea
               required
-              id="content"
-              name="content"
-              value={formData.content}
+              id="message"
+              name="message"
+              value={formData.message}
               onChange={handleChange}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32"
             />

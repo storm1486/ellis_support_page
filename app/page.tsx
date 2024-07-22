@@ -24,6 +24,8 @@ export default function Home() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
+    console.log("Firebase Project ID:", process.env.projectId);
+
     try {
       // Add a new document to the 'emails' collection
       await addDoc(collection(db, "form"), {

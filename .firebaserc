@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "ellis-test-support",
+    "staging": "ellis-test-support"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}

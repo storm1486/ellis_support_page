@@ -1,0 +1,26 @@
+[debug] [2024-07-23T16:31:40.294Z] ----------------------------------------------------------------------
+[debug] [2024-07-23T16:31:40.298Z] Command:       /opt/homebrew/Cellar/node/22.1.0/bin/node /opt/homebrew/bin/firebase deploy --only functions
+[debug] [2024-07-23T16:31:40.298Z] CLI Version:   13.13.3
+[debug] [2024-07-23T16:31:40.298Z] Platform:      darwin
+[debug] [2024-07-23T16:31:40.298Z] Node Version:  v22.1.0
+[debug] [2024-07-23T16:31:40.299Z] Time:          Tue Jul 23 2024 12:31:40 GMT-0400 (Eastern Daylight Time)
+[debug] [2024-07-23T16:31:40.299Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-07-23T16:31:40.332Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-07-23T16:31:40.333Z] > authorizing via signed-in user (patelmit8292@gmail.com)
+[debug] [2024-07-23T16:31:40.333Z] [iam] checking project ellis-test-support for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2024-07-23T16:31:40.333Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/ellis-test-support:testIamPermissions [none]
+[debug] [2024-07-23T16:31:40.334Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/ellis-test-support:testIamPermissions x-goog-quota-user=projects/ellis-test-support
+[debug] [2024-07-23T16:31:40.334Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/ellis-test-support:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-07-23T16:31:40.696Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/ellis-test-support:testIamPermissions 200
+[debug] [2024-07-23T16:31:40.696Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/ellis-test-support:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-07-23T16:31:40.697Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/ellis-test-support/serviceAccounts/ellis-test-support@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2024-07-23T16:31:40.697Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/ellis-test-support/serviceAccounts/ellis-test-support@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2024-07-23T16:31:41.138Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/ellis-test-support/serviceAccounts/ellis-test-support@appspot.gserviceaccount.com:testIamPermissions 404
+[debug] [2024-07-23T16:31:41.139Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/ellis-test-support/serviceAccounts/ellis-test-support@appspot.gserviceaccount.com:testIamPermissions {"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}}
+[debug] [2024-07-23T16:31:41.140Z] [functions] service account IAM check errored, deploy may fail: HTTP Error: 404, Unknown service account {"name":"FirebaseError","children":[],"context":{"body":{"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}},"response":{"statusCode":404}},"exit":1,"message":"HTTP Error: 404, Unknown service account","status":404}
+[info] 
+[info] === Deploying to 'ellis-test-support'...
+[info] 
+[info] i  deploying functions 
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint

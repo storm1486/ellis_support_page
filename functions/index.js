@@ -1,10 +1,8 @@
-const {onRequest} = require("firebase-functions/v2/https");
 const {onDocumentCreated} = require("firebase-functions/v2/firestore");
 const {log, error: _error} = require("firebase-functions/logger");
 
 // Import Firebase Admin SDK and initialize the app
 const {initializeApp} = require("firebase-admin/app");
-const {getFirestore} = require("firebase-admin/firestore");
 
 // Import Nodemailer for sending emails
 const {createTransport} = require("nodemailer");
@@ -24,31 +22,25 @@ const mailTransport = createTransport({
   },
 });
 
-exports.addmessage = onRequest(async (req, res) => {
-  const original = req.query.text;
-  const writeResult = await getFirestore()
-      .collection("form")
-      .add({original: original});
-  res.json({result: `Message with ID: ${writeResult.id} added.`});
-});
-
 exports.sendEmailOnFormSubmit = onDocumentCreated(
     "/form/{documentId}",
     async (event) => {
-      const original = event.data.data().original;
-      log("Processing new message:", original);
+      const formData = event.data.data();
+      const {name, email, message} = formData;
+
+      log("Processing new form submission:", formData);
 
       const mailOptions = {
         from: gmailEmail,
-        to: "patelmit8292@gmail.com",
+        to: email,
         subject: "New Message Received",
-        text: `You have submitted: ${original}`,
-        html: `<strong>You have submitted: ${original}</strong>`,
+        text: `Dear ${name},\n\nYou have submitted: ${message}`,
+        html: `<p>Dear ${name},</p><p>You have submitted: ${message}</p>`,
       };
 
       try {
         await mailTransport.sendMail(mailOptions);
-        log("Email sent successfully");
+        log("Email sent successfully to:", email);
       } catch (error) {
         _error("Error sending email:", error.toString());
       }

@@ -1,6 +1,6 @@
 "use client";
 import { useState, ChangeEvent, FormEvent } from "react";
-import { db } from "./firebase"; // Adjust the path according to your project structure
+import { db } from "./firebase"; // Ensure this path is correct
 import { collection, addDoc } from "firebase/firestore";
 
 export default function Home() {
@@ -24,10 +24,8 @@ export default function Home() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    console.log("Firebase Project ID:", process.env.projectId);
-
     try {
-      // Add a new document to the 'emails' collection
+      // Add a new document to the 'form' collection
       await addDoc(collection(db, "form"), {
         name: formData.name,
         email: formData.senderEmail,

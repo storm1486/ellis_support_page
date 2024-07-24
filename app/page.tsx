@@ -32,11 +32,24 @@ export default function Home() {
         message: formData.message,
       });
 
+      // Add a new document to the 'mail' collection for the user (using a template)
       await addDoc(collection(db, "mail"), {
-        to: [formData.senderEmail, "patelmit8292@gmail.com"],
+        to: [formData.senderEmail],
+        template: {
+          name: "welcome_template", // This should match the template document ID in Firestore
+          data: {
+            name: formData.name,
+            message: formData.message,
+          },
+        },
+      });
+
+      // Add a new document to the 'mail' collection for yourself
+      await addDoc(collection(db, "mail"), {
+        to: ["patelmit8292@gmail.com"],
         message: {
           subject: `New Form Submission from ${formData.name}`,
-          html: `<p>${formData.message}</p>`,
+          html: `<p>Name: ${formData.name}</p><p>Email: ${formData.senderEmail}</p><p>Message: ${formData.message}</p>`,
         },
       });
 

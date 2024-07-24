@@ -32,6 +32,14 @@ export default function Home() {
         message: formData.message,
       });
 
+      await addDoc(collection(db, "mail"), {
+        to: [formData.senderEmail, "patelmit8292@gmail.com"],
+        message: {
+          subject: `New Form Submission from ${formData.name}`,
+          html: `<p>${formData.message}</p>`,
+        },
+      });
+
       setIsSubmitted(true);
     } catch (error) {
       console.error("Error adding document: ", error);

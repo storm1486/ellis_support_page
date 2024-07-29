@@ -40,7 +40,7 @@ export default function Home() {
           data: {
             name: formData.name,
             message: formData.message,
-            n: `\n`
+            n: `\n`,
           },
         },
       });
@@ -68,72 +68,87 @@ export default function Home() {
       <div>
         <h1 className="text-6xl"> Ellis Test Support</h1>
       </div>
-      {isSubmitted ? (
-        <div className="text-green-500 text-xl pb-60">
-          Your form was submitted successfully!
+      <div className="flex p-10 space-x-6">
+        <div className="flex-1 flex-col">
+          <h2 className="font-semibold mb-4">
+            If you need any help, please fill out this form, and we will get
+            back to you as soon as possible! We are here to assist you with any
+            queries or issues you might have. Whether it's a technical question,
+            feedback, or just a general inquiry, our team is ready to support
+            you. Your message is important to us, and we aim to respond promptly
+            to ensure you have the best experience possible.
+          </h2>
         </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="w-full max-w-lg">
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="name"
-            >
-              Name
-            </label>
-            <input
-              required
-              id="name"
-              name="name"
-              type="text"
-              value={formData.name}
-              onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
+        {isSubmitted ? (
+          <div className="text-green-500 text-xl pb-60">
+            Your form was submitted successfully!
           </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="senderEmail"
-            >
-              Email
-            </label>
-            <input
-              required
-              id="senderEmail"
-              name="senderEmail"
-              type="email"
-              value={formData.senderEmail}
-              onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="message"
-            >
-              Message
-            </label>
-            <textarea
-              required
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32"
-            />
-          </div>
-          <div className="flex items-center justify-between">
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
-              Submit
-            </button>
-          </div>
-        </form>
-      )}
+        ) : (
+          <form
+            onSubmit={handleSubmit}
+            className="w-full max-w-lg border rounded-lg shadow-lg p-6 bg-gray-100"
+          >
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="name"
+              >
+                Name
+              </label>
+              <input
+                required
+                id="name"
+                name="name"
+                type="text"
+                value={formData.name}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="senderEmail"
+              >
+                Email
+              </label>
+              <input
+                required
+                id="senderEmail"
+                name="senderEmail"
+                type="email"
+                value={formData.senderEmail}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="message"
+              >
+                Message
+              </label>
+              <textarea
+                required
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32"
+              />
+            </div>
+            <div className="flex items-center justify-between">
+              <button
+                type="submit"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
     </main>
   );
 }

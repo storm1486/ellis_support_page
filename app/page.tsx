@@ -73,7 +73,7 @@ export default function Home() {
           <h2 className="font-semibold mb-4">
             If you need any help, please fill out this form, and we will get
             back to you as soon as possible! We are here to assist you with any
-            queries or issues you might have. Whether it's a technical question,
+            queries or issues you might have. Whether it&apos;s a technical question,
             feedback, or just a general inquiry, our team is ready to support
             you. Your message is important to us, and we aim to respond promptly
             to ensure you have the best experience possible.
